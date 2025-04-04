@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créateur de Triptyques</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/toolbar.css">
+    <link rel="stylesheet" href="css/panels.css">
+    <link rel="stylesheet" href="css/canvas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Barre d'outils principale -->
+        <div class="toolbar">
+            <div class="toolbar-section">
+                <button id="new-btn" class="toolbar-btn" title="Nouveau triptyque">
+                    <i class="fas fa-file"></i>
+                </button>
+                <button id="save-btn" class="toolbar-btn" title="Enregistrer">
+                    <i class="fas fa-save"></i>
+                </button>
+                <button id="print-btn" class="toolbar-btn" title="Imprimer">
+                    <i class="fas fa-print"></i>
+                </button>
+            </div>
+            <div class="toolbar-section">
+                <button id="undo-btn" class="toolbar-btn" title="Annuler">
+                    <i class="fas fa-undo"></i>
+                </button>
+                <button id="redo-btn" class="toolbar-btn" title="Rétablir">
+                    <i class="fas fa-redo"></i>
+                </button>
+            </div>
+            <div class="toolbar-section">
+                <button id="add-text-btn" class="toolbar-btn" title="Ajouter du texte">
+                    <i class="fas fa-font"></i>
+                </button>
+                <button id="add-image-btn" class="toolbar-btn" title="Ajouter une image">
+                    <i class="fas fa-image"></i>
+                </button>
+                <button id="add-shape-btn" class="toolbar-btn" title="Ajouter une forme">
+                    <i class="fas fa-shapes"></i>
+                </button>
+            </div>
+            <div class="toolbar-section">
+                <button id="align-left-btn" class="toolbar-btn" title="Aligner à gauche">
+                    <i class="fas fa-align-left"></i>
+                </button>
+                <button id="align-center-btn" class="toolbar-btn" title="Centrer horizontalement">
+                    <i class="fas fa-align-center"></i>
+                </button>
+                <button id="align-right-btn" class="toolbar-btn" title="Aligner à droite">
+                    <i class="fas fa-align-right"></i>
+                </button>
+                <button id="align-top-btn" class="toolbar-btn" title="Aligner en haut">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+                <button id="align-middle-btn" class="toolbar-btn" title="Centrer verticalement">
+                    <i class="fas fa-arrows-alt-v"></i>
+                </button>
+                <button id="align-bottom-btn" class="toolbar-btn" title="Aligner en bas">
+                    <i class="fas fa-arrow-down"></i>
+                </button>
+            </div>
+            <div class="toolbar-section">
+                <button id="bring-forward-btn" class="toolbar-btn" title="Avancer">
+                    <i class="fas fa-level-up-alt"></i>
+                </button>
+                <button id="send-backward-btn" class="toolbar-btn" title="Reculer">
+                    <i class="fas fa-level-down-alt"></i>
+                </button>
+            </div>
+            <div class="toolbar-section">
+                <button id="delete-btn" class="toolbar-btn" title="Supprimer">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+            <div class="toolbar-section">
+                <button id="zoom-in-btn" class="toolbar-btn" title="Zoom avant">
+                    <i class="fas fa-search-plus"></i>
+                </button>
+                <button id="zoom-out-btn" class="toolbar-btn" title="Zoom arrière">
+                    <i class="fas fa-search-minus"></i>
+                </button>
+                <button id="zoom-reset-btn" class="toolbar-btn" title="Réinitialiser le zoom">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="main-content">
+            <!-- Panneau des outils -->
+            <div class="side-panel tools-panel">
+                <div class="panel-header">
+                    <h3>Outils</h3>
+                </div>
+                <div class="panel-content">
+                    <div class="tool-group">
+                        <h4>Insertion</h4>
+                        <button id="add-text-tool" class="tool-btn">Ajouter du texte</button>
+                        <button id="add-image-tool" class="tool-btn">Ajouter une image</button>
+                        <div class="shape-tools">
+                            <button id="add-rectangle-tool" class="tool-btn">Rectangle</button>
+                            <button id="add-ellipse-tool" class="tool-btn">Ellipse</button>
+                            <button id="add-triangle-tool" class="tool-btn">Triangle</button>
+                        </div>
+                    </div>
+                    <div class="tool-group">
+                        <h4>Alignement</h4>
+                        <div class="align-tools">
+                            <button id="align-left-tool" class="tool-btn small-btn" title="Aligner à gauche">
+                                <i class="fas fa-align-left"></i>
+                            </button>
+                            <button id="align-center-h-tool" class="tool-btn small-btn" title="Centrer horizontalement">
+                                <i class="fas fa-align-center"></i>
+                            </button>
+                            <button id="align-right-tool" class="tool-btn small-btn" title="Aligner à droite">
+                                <i class="fas fa-align-right"></i>
+                            </button>
+                        </div>
+                        <div class="align-tools">
+                            <button id="align-top-tool" class="tool-btn small-btn" title="Aligner en haut">
+                                <i class="fas fa-arrow-up"></i>
+                            </button>
+                            <button id="align-center-v-tool" class="tool-btn small-btn" title="Centrer verticalement">
+                                <i class="fas fa-arrows-alt-v"></i>
+                            </button>
+                            <button id="align-bottom-tool" class="tool-btn small-btn" title="Aligner en bas">
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                        </div>
+                        <div class="align-tools">
+                            <button id="distribute-h-tool" class="tool-btn" title="Distribuer horizontalement">
+                                <i class="fas fa-arrows-alt-h"></i> Distribuer H
+                            </button>
+                            <button id="distribute-v-tool" class="tool-btn" title="Distribuer verticalement">
+                                <i class="fas fa-arrows-alt-v"></i> Distribuer V
+                            </button>
+                        </div>
+                    </div>
+                    <div class="tool-group">
+                        <h4>Disposition</h4>
+                        <button id="bring-to-front-tool" class="tool-btn">Mettre au premier plan</button>
+                        <button id="send-to-back-tool" class="tool-btn">Mettre en arrière-plan</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zone de travail (canvas) -->
+            <div class="canvas-container">
+                <div id="canvas-wrapper">
+                    <div id="tryptique-canvas">
+                        <div class="panel" id="panel-left">
+                            <div class="panel-label">Volet 1 (Gauche)</div>
+                        </div>
+                        <div class="panel" id="panel-center">
+                            <div class="panel-label">Volet 2 (Centre)</div>
+                        </div>
+                        <div class="panel" id="panel-right">
+                            <div class="panel-label">Volet 3 (Droite)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="canvas-controls">
+                    <div class="zoom-controls">
+                        <span>Zoom: </span>
+                        <span id="zoom-level">100%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panneau des propriétés et calques -->
+            <div class="side-panel right-panel">
+                <div class="panel-tabs">
+                    <button class="tab-btn active" data-tab="properties">Propriétés</button>
+                    <button class="tab-btn" data-tab="layers">Calques</button>
+                </div>
+                
+                <!-- Panneau des propriétés -->
+                <div class="tab-content active" id="properties-panel">
+                    <div class="panel-header">
+                        <h3>Propriétés</h3>
+                    </div>
+                    <div class="panel-content">
+                        <!-- Propriétés générales -->
+                        <div class="property-group" id="general-properties">
+                            <h4>Général</h4>
+                            <div class="property-row">
+                                <label for="pos-x">Position X:</label>
+                                <input type="number" id="pos-x" class="property-input">
+                            </div>
+                            <div class="property-row">
+                                <label for="pos-y">Position Y:</label>
+                                <input type="number" id="pos-y" class="property-input">
+                            </div>
+                            <div class="property-row">
+                                <label for="width">Largeur:</label>
+                                <input type="number" id="width" class="property-input">
+                            </div>
+                            <div class="property-row">
+                                <label for="height">Hauteur:</label>
+                                <input type="number" id="height" class="property-input">
+                            </div>
+                            <div class="property-row">
+                                <label for="rotation">Rotation:</label>
+                                <input type="number" id="rotation" class="property-input" min="0" max="360">
+                            </div>
+                            <div class="property-row">
+                                <label for="opacity">Opacité:</label>
+                                <input type="range" id="opacity" class="property-slider" min="0" max="100" value="100">
+                                <span id="opacity-value">100%</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Propriétés de texte -->
+                        <div class="property-group" id="text-properties">
+                            <h4>Texte</h4>
+                            <div class="property-row">
+                                <label for="text-content">Contenu:</label>
+                                <textarea id="text-content" class="property-textarea"></textarea>
+                            </div>
+                            <div class="property-row">
+                                <label for="font-family">Police:</label>
+                                <select id="font-family" class="property-select">
+                                    <option value="Arial, sans-serif">Arial</option>
+                                    <option value="'Times New Roman', serif">Times New Roman</option>
+                                    <option value="'Courier New', monospace">Courier New</option>
+                                    <option value="Georgia, serif">Georgia</option>
+                                    <option value="Verdana, sans-serif">Verdana</option>
+                                    <option value="'Roboto', sans-serif">Roboto</option>
+                                </select>
+                            </div>
+                            <div class="property-row">
+                                <label for="font-size">Taille:</label>
+                                <input type="number" id="font-size" class="property-input" min="8" max="72" value="16">
+                            </div>
+                            <div class="property-row">
+                                <label>Style:</label>
+                                <div class="text-style-buttons">
+                                    <button id="bold-btn" class="style-btn" title="Gras">
+                                        <i class="fas fa-bold"></i>
+                                    </button>
+                                    <button id="italic-btn" class="style-btn" title="Italique">
+                                        <i class="fas fa-italic"></i>
+                                    </button>
+                                    <button id="underline-btn" class="style-btn" title="Souligné">
+                                        <i class="fas fa-underline"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="property-row">
+                                <label for="text-align">Alignement:</label>
+                                <div class="text-align-buttons">
+                                    <button id="text-align-left" class="style-btn" title="Aligner à gauche">
+                                        <i class="fas fa-align-left"></i>
+                                    </button>
+                                    <button id="text-align-center" class="style-btn" title="Centrer">
+                                        <i class="fas fa-align-center"></i>
+                                    </button>
+                                    <button id="text-align-right" class="style-btn" title="Aligner à droite">
+                                        <i class="fas fa-align-right"></i>
+                                    </button>
+                                    <button id="text-align-justify" class="style-btn" title="Justifier">
+                                        <i class="fas fa-align-justify"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="property-row">
+                                <label for="text-color">Couleur:</label>
+                                <input type="color" id="text-color" class="property-color" value="#000000">
+                            </div>
+                        </div>
+                        
+                        <!-- Propriétés d'image -->
+                        <div class="property-group" id="image-properties">
+                            <h4>Image</h4>
+                            <div class="property-row">
+                                <label for="image-src">Source:</label>
+                                <div class="image-source-container">
+                                    <input type="text" id="image-src" class="property-input" readonly>
+                                    <button id="change-image-btn" class="property-btn">Changer</button>
+                                </div>
+                            </div>
+                            <div class="property-row">
+                                <label>Aperçu:</label>
+                                <div class="image-preview" id="image-preview"></div>
+                            </div>
+                            <div class="property-row">
+                                <label for="maintain-ratio">Conserver les proportions:</label>
+                                <input type="checkbox" id="maintain-ratio" checked>
+                            </div>
+                        </div>
+                        
+                        <!-- Propriétés de forme -->
+                        <div class="property-group" id="shape-properties">
+                            <h4>Forme</h4>
+                            <div class="property-row">
+                                <label for="shape-type">Type:</label>
+                                <select id="shape-type" class="property-select">
+                                    <option value="rectangle">Rectangle</option>
+                                    <option value="ellipse">Ellipse</option>
+                                    <option value="triangle">Triangle</option>
+                                </select>
+                            </div>
+                            <div class="property-row">
+                                <label for="fill-color">Couleur de remplissage:</label>
+                                <input type="color" id="fill-color" class="property-color" value="#3498db">
+                            </div>
+                            <div class="property-row">
+                                <label for="stroke-color">Couleur de bordure:</label>
+                                <input type="color" id="stroke-color" class="property-color" value="#000000">
+                            </div>
+                            <div class="property-row">
+                                <label for="stroke-width">Épaisseur de bordure:</label>
+                                <input type="number" id="stroke-width" class="property-input" min="0" max="20" value="1">
+                            </div>
+                            <div class="property-row">
+                                <label for="corner-radius">Rayon des coins:</label>
+                                <input type="number" id="corner-radius" class="property-input" min="0" max="100" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Panneau des calques -->
+                <div class="tab-content" id="layers-panel">
+                    <div class="panel-header">
+                        <h3>Calques</h3>
+                        <div class="layers-actions">
+                            <button id="add-layer-btn" class="small-btn" title="Ajouter un élément">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button id="delete-layer-btn" class="small-btn" title="Supprimer l'élément sélectionné">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="panel-content">
+                        <ul id="layers-list" class="layers-list">
+                            <!-- Les calques seront ajoutés ici dynamiquement -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <!-- Modal pour ajouter une image -->
+        <div id="add-image-modal" class="modal hidden">
+            <div class="modal-header">
+                <h3>Ajouter une image</h3>
+                <button class="close-modal-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-section">
+                    <label for="image-upload">Sélectionner une image:</label>
+                    <input type="file" id="image-upload" accept="image/*">
+                </div>
+                <div class="modal-section">
+                    <label>URL de l'image:</label>
+                    <input type="text" id="image-url" placeholder="https://exemple.com/image.jpg">
+                </div>
+                <div class="modal-preview">
+                    <div id="upload-preview"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-image-btn" class="modal-btn">Annuler</button>
+                <button id="add-image-confirm-btn" class="modal-btn primary-btn">Ajouter</button>
+            </div>
+        </div>
+
+        <!-- Modal pour enregistrer le projet -->
+        <div id="save-modal" class="modal hidden">
+            <div class="modal-header">
+                <h3>Enregistrer le projet</h3>
+                <button class="close-modal-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-section">
+                    <label for="project-name">Nom du projet:</label>
+                    <input type="text" id="project-name" placeholder="Mon triptyque">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-save-btn" class="modal-btn">Annuler</button>
+                <button id="save-confirm-btn" class="modal-btn primary-btn">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/elements/base-element.js"></script>
+    <script src="js/elements/text-element.js"></script>
+    <script src="js/elements/image-element.js"></script>
+    <script src="js/elements/shape-element.js"></script>
+    <script src="js/tryptique-model.js"></script>
+    <script src="js/ui/properties-panel.js"></script>
+    <script src="js/ui/layers-panel.js"></script>
+    <script src="js/ui/canvas.js"></script>
+    <script src="js/ui/toolbar.js"></script>
+    <script src="js/ui/modals.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

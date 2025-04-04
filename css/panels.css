@@ -1,0 +1,288 @@
+/* Styles pour les panneaux latéraux */
+.side-panel {
+    width: var(--panel-width);
+    background-color: var(--panel-bg);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.right-panel {
+    border-right: none;
+    border-left: 1px solid var(--border-color);
+}
+
+.panel-header {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-header h3 {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.panel-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+/* Styles pour les onglets */
+.panel-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    background-color: var(--light-gray);
+    transition: background-color 0.2s;
+    font-weight: 500;
+}
+
+.tab-btn:hover {
+    background-color: var(--medium-gray);
+}
+
+.tab-btn.active {
+    background-color: var(--panel-bg);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.tab-content {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+}
+
+.tab-content.active {
+    display: flex;
+}
+
+/* Styles pour le panneau des outils */
+.tool-group {
+    margin-bottom: 20px;
+}
+
+.tool-group h4 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--dark-gray);
+}
+
+.tool-btn {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    text-align: left;
+    background-color: var(--light-gray);
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.tool-btn:hover {
+    background-color: var(--medium-gray);
+}
+
+.tool-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.small-btn {
+    width: auto;
+    padding: 5px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shape-tools, .align-tools {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.shape-tools .tool-btn, .align-tools .tool-btn {
+    flex: 1;
+    text-align: center;
+}
+
+/* Styles pour le panneau des propriétés */
+.property-group {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.property-group:last-child {
+    border-bottom: none;
+}
+
+.property-group h4 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--dark-gray);
+}
+
+.property-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.property-row label {
+    flex: 1;
+    font-size: 14px;
+}
+
+.property-input, .property-select {
+    flex: 1;
+    padding: 5px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.property-textarea {
+    width: 100%;
+    min-height: 60px;
+    padding: 5px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.property-color {
+    width: 40px;
+    height: 25px;
+    padding: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.property-slider {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.text-style-buttons, .text-align-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.style-btn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light-gray);
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.style-btn:hover {
+    background-color: var(--medium-gray);
+}
+
+.style-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.image-source-container {
+    flex: 1;
+    display: flex;
+    gap: 5px;
+}
+
+.image-source-container .property-input {
+    flex: 1;
+}
+
+.property-btn {
+    padding: 5px 10px;
+    background-color: var(--light-gray);
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.property-btn:hover {
+    background-color: var(--medium-gray);
+}
+
+.image-preview {
+    width: 100%;
+    height: 100px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--light-gray);
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Styles pour le panneau des calques */
+.layers-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.layers-list {
+    list-style: none;
+    padding: 0;
+}
+
+.layer-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s;
+}
+
+.layer-item:hover {
+    background-color: var(--light-gray);
+}
+
+.layer-item.selected {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.layer-icon {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.layer-name {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.layer-visibility {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.layer-visibility.hidden {
+    color: var(--dark-gray);
+}

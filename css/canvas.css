@@ -1,0 +1,161 @@
+/* Styles pour la zone de travail (canvas) */
+.canvas-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--canvas-bg);
+    overflow: hidden;
+    position: relative;
+}
+
+#canvas-wrapper {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#tryptique-canvas {
+    display: flex;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transform-origin: center;
+    transition: transform 0.2s;
+}
+
+.panel {
+    position: relative;
+    width: 210mm; /* Largeur A4 */
+    height: 297mm; /* Hauteur A4 */
+    background-color: white;
+    border: 1px solid var(--border-color);
+}
+
+#panel-left, #panel-right {
+    border-right: none;
+}
+
+.panel-label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--dark-gray);
+    font-size: 12px;
+    pointer-events: none;
+}
+
+/* Ligne de séparation entre les panneaux */
+.panel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background-color: var(--border-color);
+    border-right: 1px dashed var(--dark-gray);
+}
+
+#panel-right::after {
+    display: none;
+}
+
+/* Éléments du triptyque */
+.tryptique-element {
+    position: absolute;
+    cursor: move;
+    user-select: none;
+}
+
+.tryptique-element.selected {
+    outline: 2px solid var(--primary-color);
+}
+
+/* Poignées de redimensionnement */
+.resize-handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border: 1px solid var(--primary-color);
+    z-index: 10;
+}
+
+.resize-handle.top-left {
+    top: -5px;
+    left: -5px;
+    cursor: nwse-resize;
+}
+
+.resize-handle.top-right {
+    top: -5px;
+    right: -5px;
+    cursor: nesw-resize;
+}
+
+.resize-handle.bottom-left {
+    bottom: -5px;
+    left: -5px;
+    cursor: nesw-resize;
+}
+
+.resize-handle.bottom-right {
+    bottom: -5px;
+    right: -5px;
+    cursor: nwse-resize;
+}
+
+.rotate-handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>') 8 8, auto;
+}
+
+/* Éléments spécifiques */
+.text-element {
+    min-width: 50px;
+    min-height: 20px;
+    padding: 5px;
+}
+
+.image-element img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.shape-element {
+    min-width: 20px;
+    min-height: 20px;
+}
+
+/* Contrôles du canvas */
+.canvas-controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: var(--panel-bg);
+    border-top: 1px solid var(--border-color);
+}
+
+.zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#zoom-level {
+    font-weight: 500;
+    min-width: 50px;
+}

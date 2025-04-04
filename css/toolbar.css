@@ -1,0 +1,69 @@
+/* Styles pour la barre d'outils */
+.toolbar {
+    display: flex;
+    background-color: var(--panel-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 5px 10px;
+    height: var(--toolbar-height);
+    box-shadow: var(--shadow);
+    z-index: 10;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.toolbar-section {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    border-right: 1px solid var(--border-color);
+    margin-right: 10px;
+}
+
+.toolbar-section:last-child {
+    border-right: none;
+}
+
+.toolbar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    margin: 0 2px;
+    transition: background-color 0.2s;
+}
+
+.toolbar-btn:hover {
+    background-color: var(--medium-gray);
+}
+
+.toolbar-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.toolbar-btn i {
+    font-size: 16px;
+}
+
+/* Styles pour les boutons d'outils spécifiques */
+#add-text-btn, #add-image-btn, #add-shape-btn {
+    background-color: var(--light-gray);
+}
+
+#undo-btn, #redo-btn {
+    color: var(--dark-gray);
+}
+
+#undo-btn.active, #redo-btn.active {
+    color: var(--text-color);
+}
+
+#delete-btn {
+    color: #e74c3c;
+}
+
+#delete-btn:hover {
+    background-color: #fadbd8;
+}
